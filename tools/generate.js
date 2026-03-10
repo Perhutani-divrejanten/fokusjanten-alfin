@@ -19,6 +19,24 @@ function toSlug(str) {
     .replace(/^-+|-+$/g, '');
 }
 
+function convertGoogleDriveLink(url) {
+  if (!url || typeof url !== 'string') return url;
+  
+  // Check if it's a Google Drive sharing link
+  const driveMatch = url.match(/https:\/\/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)\/view/);
+  if (driveMatch) {
+    const fileId = driveMatch[1];
+    return `https://drive.google.com/uc?export=view&id=${fileId}`;
+  }
+  
+  // If it's already a direct Google Drive link, return as is
+  if (url.includes('drive.google.com/uc?export=view&id=')) {
+    return url;
+  }
+  
+  return url;
+}
+
 function backupArticlesJson() {
   const timestamp = Math.floor(Date.now() / 1000);
   const backupPath = `${ARTICLES_JSON_PATH}.bak.${timestamp}`;
@@ -157,6 +175,10 @@ async function generateArticles() {
         let imagePath = row.image && !row.image.startsWith('http') 
           ? `${IMG_DIR}/${row.image}` 
           : (row.image || '');
+        
+        // Convert Google Drive links to direct viewable links
+        imagePath = convertGoogleDriveLink(imagePath);
+        
         let imagePathForHTML = imagePath && !imagePath.startsWith('http')
           ? `../${imagePath}`
           : imagePath;
