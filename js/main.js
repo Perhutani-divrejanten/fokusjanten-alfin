@@ -124,18 +124,14 @@
     });
     
 
-    // Carousel item 4
+    // Carousel item 4 (featured news)
     $(".carousel-item-4").owlCarousel({
         autoplay: true,
         smartSpeed: 1000,
         margin: 30,
         dots: false,
         loop: true,
-        nav : true,
-        navText : [
-            '<i class="fa fa-angle-left" aria-hidden="true"></i>',
-            '<i class="fa fa-angle-right" aria-hidden="true"></i>'
-        ],
+        nav: false, // disable arrows, they're hidden by CSS
         responsive: {
             0:{
                 items:1
