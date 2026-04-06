@@ -26,18 +26,14 @@ jobs:
         env:
           SHEETS_URL: ${{ secrets.SHEETS_URL }}
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@master
         with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: ${{ secrets.FTP_PORT }}
-          local-dir: ./
-          server-dir: public_html/
-          exclude: |
-            .git*
-            .github*
-            tools/**
-            *.md
-            *.txt
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/indonesiadaily/public_html
+            rm -rf article css js img lib scripts *.html *.json
+            mkdir -p article css js img lib scripts
