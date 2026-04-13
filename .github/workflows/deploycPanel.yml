@@ -43,4 +43,8 @@ jobs:
             final-verification.ps1
             fix-encoding.ps1
             rebrand-to-warta-janten.ps1
+<<<<<<< HEAD
             replace-logo.ps1
+=======
+            replace-logo.ps1
+>>>>>>> 08d549297cebd9b24fd7a93104c211412123422b
