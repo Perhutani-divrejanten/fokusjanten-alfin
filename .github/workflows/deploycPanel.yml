@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: '0 */6 * * *'   # otomatis update setiap 6 jam
+    - cron: '0 8 * * *'   # otomatis update setiap 6 jam
 
 jobs:
   deploy:
@@ -34,7 +34,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
           protocol: ftp
-          local-dir: ./  # atau ./ jika ingin upload semua
+          local-dir: ./
           server-dir: /fokusjanten/
           timeout: 60000
           dangerous-clean-slate: false
