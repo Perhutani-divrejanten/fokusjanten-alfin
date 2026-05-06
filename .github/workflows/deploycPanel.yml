@@ -36,7 +36,7 @@ jobs:
           protocol: ftp
           local-dir: ./  # atau ./ jika ingin upload semua
           server-dir: /fokusjanten/
-          timeout: 500000
+          timeout: 600000
           dangerous-clean-slate: false
           exclude: |
             **/.git*
